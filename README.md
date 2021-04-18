@@ -1,6 +1,8 @@
 # ITMAL project
 
 ## Structure
+
+```
 .
 ├── data
 │   └── 0_dB_pump.zip
@@ -10,6 +12,7 @@
 └── tools
     ├── dat-manip.py
     └── __init__.py
+```
 
 - Tools dir for import tools and feature extracting tools
 - datadir for the datafiles
