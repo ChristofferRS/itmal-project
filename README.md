@@ -5,13 +5,29 @@
 ```
 .
 ├── data
-│   └── 0_dB_pump.zip
+│   ├── 0_dB_pump.zip
+│   └── pump
+│       ├── id_00
+│       │   ├── abnormal
+│       │   └── normal
+│       ├── id_02
+│       │   ├── abnormal
+│       │   └── normal
+│       ├── id_04
+│       │   ├── abnormal
+│       │   └── normal
+│       └── id_06
+│           ├── abnormal
+│           └── normal
 ├── makefile
+├── nn.py
 ├── README.md
 ├── requirements.txt
 └── tools
-    ├── dat-manip.py
-    └── __init__.py
+    ├── __init__.py
+    ├── prepro.py
+    └── show.py
+
 ```
 
 - Tools dir for import tools and feature extracting tools
