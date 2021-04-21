@@ -9,6 +9,7 @@ class sound:
     def __init__(self,path):
         self.path=path
         self.data,self.sample_rate=self.__load()
+        self.calc_fft()
     def __load(self):
         return load(self.path)
     def draw(self):
