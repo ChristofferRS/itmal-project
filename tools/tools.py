@@ -23,7 +23,7 @@ def get_label(file_path):
     return parts[-2]
 
 def decode_audio(audio_binary):
-    audio = tfio.audio.decode_wav(audio_binary,dtype=tf.int16)[:,0]
+    audio = tfio.audio.decode_wav(audio_binary,dtype=tf.int16)[0:1000,0]
     return audio
 
 def get_spectrogram(waveform):
