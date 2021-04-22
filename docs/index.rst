@@ -5,6 +5,7 @@
 
 Welcome to ITMAL Project's documentation!
 =========================================
+This project is for machineleaning on pump audio files. It was develloped by Rich and Christoffer
 
 .. toctree::
    :maxdepth: 2
