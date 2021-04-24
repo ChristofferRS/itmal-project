@@ -41,7 +41,7 @@ def decode_audio(audio_binary):
     :returns: Decoded audio.
 
     """
-    audio = tfio.audio.decode_wav(audio_binary,dtype=tf.int16)[0:1000,0]
+    audio = tfio.audio.decode_wav(audio_binary,dtype=tf.int16)[0:16000,0]
     return audio
 
 def get_spectrogram(waveform):
@@ -80,7 +80,7 @@ def get_spectrogram_and_label_id(audio, label):
     
     """
     spectrogram = get_spectrogram(audio)
-    label_id = (label == "normal")
+    label_id = tf.argmax(label == ["abnormal","normal"])
     return spectrogram, label_id
 
 if __name__=="__main__":
@@ -90,14 +90,15 @@ if __name__=="__main__":
     print("============")
     wav,lab=get_waveform_and_label("data/pump/id_00/abnormal/00000003.wav")
     spectrogram = get_spectrogram(wav)
-    fig, axes = plt.subplots(2, figsize=(12, 8))
-    timescale = np.arange(wav.shape[0])
-    axes[0].plot(timescale, wav)
-    axes[0].set_title('Waveform')
-    axes[0].set_xlim([0, 16000])
-    plot_spectrogram(spectrogram.numpy(), axes[1])
-    axes[1].set_title('Spectrogram')
-    plt.show()
+    print(spectrogram.shape)
+    #fig, axes = plt.subplots(2, figsize=(12, 8))
+    #timescale = np.arange(wav.shape[0])
+    #axes[0].plot(timescale, wav)
+    #axes[0].set_title('Waveform')
+    #axes[0].set_xlim([0, 16000])
+    #plot_spectrogram(spectrogram.numpy(), axes[1])
+    #axes[1].set_title('Spectrogram')
+    #plt.show()
 
 
 
