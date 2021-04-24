@@ -19,7 +19,7 @@ sys.path.insert(0, os.path.abspath('..'))
 
 project = 'ITMAL Project'
 copyright = '2021, Christoffer Søndergaard'
-author = 'Christoffer Søndergaard'
+author = 'Christoffer Søndergaard and Rich'
 
 
 # -- General configuration ---------------------------------------------------

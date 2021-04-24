@@ -1,8 +1,8 @@
-tools
-=====
-The tools used to preprocess and plot the data.
+itmal-prject
+============
 
 .. toctree::
    :maxdepth: 4
 
+   main
    tools
