@@ -18,8 +18,8 @@ if __name__=="__main__":
     print(model.summary())
 
     model.compile(optimizer=tf.keras.optimizers.Adam(), loss=tf.keras.losses.BinaryCrossentropy())
-    EPOCHS = 3
-    history = model.fit(train, validation_data=val, epochs=EPOCHS)
+    EPOCHS = 20
+    history = model.fit(train, validation_data=val, epochs=EPOCHS, callbacks=tf.keras.callbacks.EarlyStopping(verbose=1, patience=2))
 
     model.save('saved_model')
     metrics = history.history
