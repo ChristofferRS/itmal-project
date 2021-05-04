@@ -88,7 +88,7 @@ if __name__=="__main__":
     print("Testing on file:")
     print("data/pump/id_00/abnormal/00000003.wav")
     print("============")
-    wav,lab=get_waveform_and_label("data/pump/id_00/abnormal/00000003.wav")
+    wav,lab=get_waveform_and_label("data/pump/id_00/abnormal/00000008.wav")
     spectrogram = get_spectrogram(wav)
     print(spectrogram.shape)
     fig, axes = plt.subplots(2, figsize=(12, 8))
