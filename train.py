@@ -20,9 +20,8 @@ if __name__=="__main__":
     model.compile(optimizer=tf.keras.optimizers.Adam(), loss=tf.keras.losses.BinaryCrossentropy())
     EPOCHS = 20
     history = model.fit(train, validation_data=val, epochs=EPOCHS, callbacks=tf.keras.callbacks.EarlyStopping(verbose=1, patience=2))
-
     model.save('saved_model')
     metrics = history.history
-    hist_dat=np.array([[history.epoch],[metrics['loss']],[metrics['val_loss']]])
+    hist_dat=np.array([[history.epoch],[metrics['loss']],[metrics['loss']]])
     np.savetxt("train_data.csv",hist_dat,delimiter=",")
 
