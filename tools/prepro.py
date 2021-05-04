@@ -41,7 +41,7 @@ def decode_audio(audio_binary):
     :returns: Decoded audio.
 
     """
-    audio = tfio.audio.decode_wav(audio_binary,dtype=tf.int16)[0:16000,0]
+    audio = tfio.audio.decode_wav(audio_binary,dtype=tf.int16)[0:200000,0]
     return audio
 
 def get_spectrogram(waveform):
