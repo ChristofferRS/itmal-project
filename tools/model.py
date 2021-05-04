@@ -68,7 +68,7 @@ def build_model(train_ds):
 
     # Normalisation Layer
     norm_layer = preprocessing.Normalization()
-    norm_layer.adapt(train_ds.map(lambda x, _: x))
+    norm_layer.adapt(train_ds.take(30).map(lambda x, _: x))
     
     #Model layout
     model = models.Sequential([
