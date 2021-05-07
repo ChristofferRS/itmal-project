@@ -77,11 +77,8 @@ def build_model(train_ds):
         norm_layer,
         layers.Conv2D(60, 3, activation='relu'),
         layers.Conv2D(60, 3, activation='relu'),
-        layers.Conv2D(60, 3, activation='relu'),
-        layers.Conv2D(60, 3, activation='relu'),
-        layers.Conv2D(60, 3, activation='relu'),
         layers.Flatten(),
-        layers.Dense(150, activation='relu'),
+        layers.Dense(100, activation='relu'),
         #layers.Dropout(0.5),
         layers.Dense(1),
     ])
