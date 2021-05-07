@@ -57,7 +57,7 @@ def get_spectrogram(waveform):
     waveform = tf.cast(waveform, tf.float32)
     spectrogram = tf.signal.stft(waveform, frame_length=255, frame_step=100)
     spectrogram = tf.abs(spectrogram)
-    return spectrogram
+    return spectrogram[:,0:20]
 
 def plot_spectrogram(spectrogram, ax):
     """
@@ -93,11 +93,12 @@ if __name__=="__main__":
     print(spectrogram.shape)
     fig, axes = plt.subplots(2, figsize=(12, 8))
     timescale = np.arange(wav.shape[0])
-    axes[0].plot(timescale, wav)
-    axes[0].set_title('Waveform')
-    #axes[0].set_xlim([0, 16000])
     plot_spectrogram(spectrogram.numpy(), axes[1])
-    axes[1].set_title('Spectrogram')
+    axes[1].set_title('Abnormal')
+    wav,lab=get_waveform_and_label("data/pump/id_00/normal/00000008.wav")
+    spectrogram = get_spectrogram(wav)
+    plot_spectrogram(spectrogram.numpy(), axes[0])
+    axes[0].set_title('Normal')
     plt.show()
 
 
