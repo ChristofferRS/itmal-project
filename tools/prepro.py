@@ -95,7 +95,7 @@ if __name__=="__main__":
     timescale = np.arange(wav.shape[0])
     plot_spectrogram(spectrogram.numpy(), axes[1])
     axes[1].set_title('Abnormal')
-    wav,lab=get_waveform_and_label("data/pump/id_00/normal/00000008.wav")
+    wav,lab=get_waveform_and_label("data/pump/id_02/normal/00000008.wav")
     spectrogram = get_spectrogram(wav)
     plot_spectrogram(spectrogram.numpy(), axes[0])
     axes[0].set_title('Normal')

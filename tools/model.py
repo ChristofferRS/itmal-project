@@ -73,12 +73,12 @@ def build_model(train_ds):
     #Model layout
     model = models.Sequential([
         layers.InputLayer(input_shape=input_shape),
-        preprocessing.Resizing(32, 32), 
+        #preprocessing.Resizing(32, 32), 
         norm_layer,
         layers.Conv2D(60, 3, activation='relu'),
         layers.Conv2D(60, 3, activation='relu'),
         layers.Flatten(),
-        layers.Dense(100, activation='relu'),
+        layers.Dense(60, activation='relu'),
         #layers.Dropout(0.5),
         layers.Dense(1),
     ])
