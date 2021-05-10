@@ -89,17 +89,16 @@ if __name__=="__main__":
     print("data/pump/id_00/abnormal/00000003.wav")
     print("============")
     wav,lab=get_waveform_and_label("data/pump/id_00/abnormal/00000008.wav")
-    spectrogram = get_spectrogram(wav)
-    print(spectrogram.shape)
+    spectrogram,label = get_spectrogram_and_label_id(wav,lab)
     fig, axes = plt.subplots(2, figsize=(12, 8))
     timescale = np.arange(wav.shape[0])
     plot_spectrogram(spectrogram.numpy(), axes[1])
     axes[1].set_title('Abnormal')
     wav,lab=get_waveform_and_label("data/pump/id_02/normal/00000008.wav")
-    spectrogram = get_spectrogram(wav)
+    spectrogram,label = get_spectrogram_and_label_id(wav,lab)
     plot_spectrogram(spectrogram.numpy(), axes[0])
     axes[0].set_title('Normal')
-    plt.show()
+    #plt.show()
 
 
 
