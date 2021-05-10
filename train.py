@@ -17,7 +17,7 @@ if __name__=="__main__":
     model=build_model(train)
     print(model.summary())
 
-    model.compile(optimizer=tf.keras.optimizers.Adam(), loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True))
+    model.compile(optimizer=tf.keras.optimizers.Adam(), loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),metrics=['accuracy'])
     EPOCHS = 20
     stopper=tf.keras.callbacks.EarlyStopping(patience=5)
     history = model.fit(train, validation_data=val_ds, epochs=EPOCHS, callbacks=stopper)
