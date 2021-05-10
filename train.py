@@ -12,7 +12,7 @@ from tensorflow.keras import layers
 #model.evaluate(X_test,Y_test,verbose=1)
 if __name__=="__main__":
     pprint("Loading Data")
-    train,test,val_ds=load_data("data/pump/*/*/*.wav")
+    train,test,val_ds=load_data("data/pump/*/normal/*.wav","data/pump/*/abnormal/*.wav")
     pprint("Building Model")
     model=build_model(train)
     print(model.summary())

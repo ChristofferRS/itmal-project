@@ -1,6 +1,7 @@
 import sys
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'  # or any {'0', '1', '2'}
+import seaborn as sns
 from sys import exit
 from tools.prepro import *
 from tools.model import *
@@ -17,7 +18,7 @@ if __name__=="__main__":
     train,test,val=load_data("data/pump/*/*/*.wav")
 
     pprint("Reloading Model")
-    model=build_model(train)
+    model = tf.keras.models.load_model("saved_model")
     print(model.summary())
 
     test_audio = []
@@ -34,3 +35,11 @@ if __name__=="__main__":
 
     test_acc = sum(y_pred == y_true) / len(y_true)
     print(f'Test set accuracy: {test_acc:.0%}')
+
+    confusion_mtx = tf.math.confusion_matrix(y_true, y_pred) 
+    plt.figure(figsize=(10, 8))
+    sns.heatmap(confusion_mtx, xticklabels=["Abnormal","Normal"], yticklabels=["Abnormal","Normal"], 
+                annot=True, fmt='g')
+    plt.xlabel('Prediction')
+    plt.ylabel('Label')
+    plt.show()

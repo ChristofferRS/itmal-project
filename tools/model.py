@@ -22,7 +22,7 @@ def preprocess_dataset(files):
     output_ds = output_ds.map(lambda x,y: (tf.expand_dims(x,axis=-1),y),  num_parallel_calls=AUTOTUNE)
     return output_ds
 
-def load_data(glob):
+def load_data(globn,globab):
     """
     Load the data in the data dir downloaded using `make`
     Data is loaded into a tensorflow Data object for improved peformance after
@@ -32,13 +32,15 @@ def load_data(glob):
     :type glob: str
 
     """
-    filenames = tf.io.gfile.glob(glob)
-    filenames = tf.random.shuffle(filenames)
+    nfiles = tf.io.gfile.glob(globn)
+    abfiles = tf.io.gfile.glob(globab)
+    abfiles = tf.random.shuffle(abfiles)
+    nfiles = tf.random.shuffle(nfiles)
 
 # Train Test Split
-    train_files = filenames[:2500]
-    val_files = filenames[2500:3200]
-    test_files = filenames[3200:]
+    train_files = tf.concat([abfiles[:200], nfiles[:400]],axis=0)
+    val_files = tf.concat([abfiles[200:300], nfiles[400:600]],axis=0)
+    test_files = tf.concat([abfiles[300:], nfiles[600:]],axis=0)
 
 
     train_ds = preprocess_dataset(train_files)
@@ -73,12 +75,11 @@ def build_model(train_ds):
     #Model layout
     model = models.Sequential([
         layers.InputLayer(input_shape=input_shape),
-        #preprocessing.Resizing(32, 32), 
+        preprocessing.Resizing(32, 32), 
         norm_layer,
-        layers.Conv2D(60, 3, activation='relu'),
-        layers.Conv2D(60, 3, activation='relu'),
+        layers.Conv2D(30, 3, activation='relu'),
         layers.Flatten(),
-        layers.Dense(60, activation='relu'),
+        layers.Dense(30, activation='relu'),
         #layers.Dropout(0.5),
         layers.Dense(2),
     ])
