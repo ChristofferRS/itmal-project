@@ -36,17 +36,20 @@ def load_data(glob):
     filenames = tf.random.shuffle(filenames)
 
 # Train Test Split
-    train_files = filenames[:3000]
-    test_files = filenames[-800:]
+    train_files = filenames[:2500]
+    val_files = filenames[2500:3200]
+    test_files = filenames[3200:]
 
 
     train_ds = preprocess_dataset(train_files)
+    val_ds = preprocess_dataset(train_files)
     test_ds = preprocess_dataset(test_files)
 
     batch_size = 60
     train_ds = train_ds.batch(batch_size)
+    val_ds = val_ds.batch(batch_size)
 
-    return train_ds,test_ds
+    return train_ds,test_ds,val_ds
 
 def build_model(train_ds):
     """
@@ -77,7 +80,7 @@ def build_model(train_ds):
         layers.Flatten(),
         layers.Dense(60, activation='relu'),
         #layers.Dropout(0.5),
-        layers.Dense(1),
+        layers.Dense(2),
     ])
     return model
 
