@@ -20,7 +20,7 @@ if __name__=="__main__":
     model.compile(optimizer=tf.keras.optimizers.Adam(), loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True))
     EPOCHS = 20
     stopper=tf.keras.callbacks.EarlyStopping(patience=5)
-    history = model.fit(train, validation_data=val_ds, epochs=EPOCHS, validation_split=0.2, callbacks=stopper)
+    history = model.fit(train, validation_data=val_ds, epochs=EPOCHS, callbacks=stopper)
     model.save('saved_model')
     #metrics = history.history
     #hist_dat=np.array([[history.epoch],[metrics['loss']],[metrics['loss']]])
