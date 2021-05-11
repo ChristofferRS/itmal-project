@@ -34,13 +34,14 @@ def load_data(globn,globab):
     """
     nfiles = tf.io.gfile.glob(globn)
     abfiles = tf.io.gfile.glob(globab)
+
     abfiles = tf.random.shuffle(abfiles)
     nfiles = tf.random.shuffle(nfiles)
 
 # Train Test Split
-    train_files = tf.concat([abfiles[:200], nfiles[:400]],axis=0)
-    val_files = tf.concat([abfiles[200:300], nfiles[400:600]],axis=0)
-    test_files = tf.concat([abfiles[300:], nfiles[600:]],axis=0)
+    train_files = tf.concat([abfiles[:200], nfiles[:200]],axis=0)
+    val_files = tf.concat([abfiles[200:300], nfiles[200:300]],axis=0)
+    test_files = tf.concat([abfiles[300:], nfiles[300:]],axis=0)
 
 
     train_ds = preprocess_dataset(train_files)
