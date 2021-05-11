@@ -15,7 +15,7 @@ from tensorflow.keras import layers
 if __name__=="__main__":
     AUTOTUNE = tf.data.AUTOTUNE
     pprint("Loading Data")
-    train,test,val=load_data("data/pump/*/*/*.wav")
+    train,test,val_ds=load_data("data/pump/*/normal/*.wav","data/pump/*/abnormal/*.wav")
 
     pprint("Reloading Model")
     model = tf.keras.models.load_model("saved_model")
@@ -42,4 +42,4 @@ if __name__=="__main__":
                 annot=True, fmt='g')
     plt.xlabel('Prediction')
     plt.ylabel('Label')
-    plt.show()
+    plt.savefig("confusion.png")

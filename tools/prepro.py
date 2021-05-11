@@ -55,9 +55,9 @@ def get_spectrogram(waveform):
 
     """
     waveform = tf.cast(waveform, tf.float32)
-    spectrogram = tf.signal.stft(waveform, frame_length=255, frame_step=100)
+    spectrogram = tf.signal.stft(waveform, frame_length=355, frame_step=50)
     spectrogram = tf.abs(spectrogram)
-    return spectrogram[:,0:20]
+    return spectrogram[:,:]
 
 def plot_spectrogram(spectrogram, ax):
     """
@@ -98,7 +98,7 @@ if __name__=="__main__":
     spectrogram,label = get_spectrogram_and_label_id(wav,lab)
     plot_spectrogram(spectrogram.numpy(), axes[0])
     axes[0].set_title('Normal')
-    #plt.show()
+    plt.show()
 
 
 
