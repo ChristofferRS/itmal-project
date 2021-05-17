@@ -55,7 +55,7 @@ def get_spectrogram(waveform):
 
     """
     waveform = tf.cast(waveform, tf.float32)
-    spectrogram = tf.signal.stft(waveform, frame_length=355, frame_step=50)
+    spectrogram = tf.signal.stft(waveform, frame_length=55, frame_step=200)
     spectrogram = tf.abs(spectrogram)
     return spectrogram[:,:]
 

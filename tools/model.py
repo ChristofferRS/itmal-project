@@ -39,9 +39,9 @@ def load_data(globn,globab):
     nfiles = tf.random.shuffle(nfiles)
 
 # Train Test Split
-    train_files = tf.concat([abfiles[:200], nfiles[:200]],axis=0)
-    val_files = tf.concat([abfiles[200:300], nfiles[200:300]],axis=0)
-    test_files = tf.concat([abfiles[300:], nfiles[300:]],axis=0)
+    train_files = tf.concat([abfiles[:200],abfiles[100:300], nfiles[:400]],axis=0)
+    val_files = tf.concat([abfiles[300:400], nfiles[300:400]],axis=0)
+    test_files = tf.concat([abfiles[400:], nfiles[400:]],axis=0)
 
 
     train_ds = preprocess_dataset(train_files)
@@ -78,10 +78,13 @@ def build_model(train_ds):
         layers.InputLayer(input_shape=input_shape),
         preprocessing.Resizing(32, 32), 
         norm_layer,
-        layers.Conv2D(30, 3, activation='relu'),
+        layers.Conv2D(60, 3, activation='relu'),
+        #layers.Conv2D(30, 3, activation='relu'),
+        #layers.Conv2D(30, 3, activation='relu'),
+        #layers.Conv2D(30, 3, activation='relu'),
         layers.Flatten(),
         layers.Dense(30, activation='relu'),
-        #layers.Dropout(0.5),
+        #layers.Dropout(0.1),
         layers.Dense(2),
     ])
     return model
